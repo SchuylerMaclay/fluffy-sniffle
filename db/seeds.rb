@@ -3,5 +3,7 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+  users = User.create([{ name: 'Chicago' }, { name: 'Copenhagen' }, { name: 'el maximo' }])
+  Qweet.create(content: 'Big writing here', user_id: users.first.id)
+  Qweet.create(content: 'small writing here', user_id: users.first.id)
+  Qweet.create(content: 'Huge writing here', user_id: users.third.id)

@@ -1,0 +1,13 @@
+<div>
+  <h3>Name: <%= @user.name %></h3>
+<ul>
+  <% @user.qweets.each do |qweet| %>
+    <li><%= qweet.content %></li>
+  <% end %>
+</ul>
+
+</div>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
