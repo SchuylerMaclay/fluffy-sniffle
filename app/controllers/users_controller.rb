@@ -6,8 +6,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    redirect_to @user, notice: 'User was successfully created.'
+
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to @user, notice: 'User was successfully created.'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -19,7 +24,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
@@ -47,3 +52,9 @@ class UsersController < ApplicationController
 
     end
 end
+
+# <%= link_to 'Ad details', [@magazine, @ad] %>
+# <%= link_to 'Edit Ad', [:edit, @magazine, @ad] %>
+# get 'photos/:id', to: 'photos#show'
+# rake routes
+# Rails.application.config.session_store :cookie_store, key: '_your_app_session', domain: ".example.com"

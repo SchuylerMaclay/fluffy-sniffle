@@ -1,2 +1,9 @@
-<h1>Qweets#show</h1>
-<p>Find me in app/views/qweets/show.html.erb</p>
+<h1>Your Qweet</h1>
+<div>
+  <h3>User name: <%= @qweet.user.name %></h3>
+  <p>Qweet: <%= @qweet.content %></p>
+  <%= link_to 'edit details', [:edit, @qweet.user, @qweet] %>
+
+</div>
+br
+<%= link_to 'Back to user', user_path(@qweet.user) %>

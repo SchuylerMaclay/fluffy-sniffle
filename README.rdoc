@@ -26,3 +26,31 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+********* useful
+
+<!--
+
+<h3>Name: <%= @user.name %></h3>
+<div class="">
+
+
+<% @user.qweets.each do |qweet| %>
+  <tr>
+    <td><%= qweet.content %></td>
+    <td><%= link_to "Show", user_qweet_path(@user, qweet) %></td>
+    <td><%= link_to "Edit", edit_qweet(qweet) %></td>
+    <td><%= link_to "Remove", [@user, @qweet], method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end %>
+</table>
+<br>
+
+<%= link_to "New qweet", [@user, @qweet] %>
+</div>
+
+<br>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+-->

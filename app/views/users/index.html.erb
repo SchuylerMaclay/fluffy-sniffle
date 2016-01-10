@@ -2,13 +2,14 @@
 <%= link_to "Create a new user", new_user_path %>
 <ul>
   <% @users.each do |user| %>
-    <li><%= user.name %></li>
+    <li><%= link_to user.name, user_path(user) %></li>
 
     <ul>
     <% user.qweets.each do |qweet| %>
       <li><%= qweet.content %></li>
     <% end %>
     </ul>
+    <br>
 
   <% end %>
 </ul>

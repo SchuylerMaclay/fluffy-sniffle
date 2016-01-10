@@ -1,2 +1,26 @@
-<h1>Qweets#edit</h1>
-<p>Find me in app/views/qweets/edit.html.erb</p>
+<h1>Edit a Qweet</h1>
+<h3>User Name: <%= @user.name %></h3>
+
+
+
+<%= form_for [@user, @qweet] do |f| %>
+
+<% if @qweet.errors.any? %>
+  <ul>
+    <% @qweet.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <div>
+    <%= f.label :content %>
+    <br>
+    <%= f.text_area :content, rows: "5" %>
+  </div>
+  <p>
+    Max 256 char
+  </p>
+
+  <%= f.submit %>
+<% end %>

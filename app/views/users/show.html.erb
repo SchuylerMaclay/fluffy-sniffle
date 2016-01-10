@@ -1,13 +1,15 @@
 <div>
   <h3>Name: <%= @user.name %></h3>
+  Qweet Count: <%= @user.qweets.size %><br>
+  <%= link_to 'Compose New Qweet', new_user_qweet_path(@user)  %>
 <ul>
   <% @user.qweets.each do |qweet| %>
     <li><%= qweet.content %></li>
+    <%= link_to 'Qweet details', user_qweet_path(@user, qweet) %>
   <% end %>
 </ul>
 
 </div>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit User', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
