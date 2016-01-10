@@ -28,9 +28,16 @@ class UsersController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @user.destroy
-  # end
+  def destroy
+    @user = set_user
+    @user.qweets.destroy_all
+
+    if @user.destroy
+      redirect_to users_path, notice: 'User was successfully DESTROYED.'
+    else
+      render :edit
+    end
+  end
 
   def index
     @users = User.all

@@ -1,7 +1,7 @@
 <div>
   <h3>Name: <%= @user.name %></h3>
   Qweet Count: <%= @user.qweets.size %><br>
-  <%= link_to 'Compose New Qweet', new_user_qweet_path(@user)  %>
+  <%= link_to 'Compose New Qweet', new_user_qweet_path(@user) if @user == current_user %>
 <ul>
   <% @user.qweets.each do |qweet| %>
     <li><%= qweet.content %></li>

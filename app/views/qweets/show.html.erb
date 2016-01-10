@@ -1,9 +1,12 @@
-<h1>Your Qweet</h1>
-<div>
-  <h3>User name: <%= @qweet.user.name %></h3>
-  <p>Qweet: <%= @qweet.content %></p>
-  <%= link_to 'edit details', [:edit, @qweet.user, @qweet] %>
-
-</div>
-br
+<h1>Qweet Details</h1>
+  <div>
+    <h3>User name: <%= @qweet.user.name %></h3>
+    <span>Qweet: <%= @qweet.content %></span>
+    <%= link_to 'edit qweet', [:edit, @qweet.user, @qweet] if @user == current_user %>
+  </div>
+<br>
 <%= link_to 'Back to user', user_path(@qweet.user) %>
+<% if @user == current_user %>
+|
+<%= link_to 'Make new Qweet', new_user_qweet_path(@qweet.user) %>
+<% end %>

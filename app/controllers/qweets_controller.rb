@@ -6,6 +6,7 @@ class QweetsController < ApplicationController
   end
 
   def create
+
     @qweet = Qweet.new
     @user = User.find(params[:user_id])
     if @qweet.update(content: qweet_params[:content], user_id: params[:user_id])
@@ -18,6 +19,7 @@ class QweetsController < ApplicationController
   def edit
     @qweet = set_qweet
     @user = User.find(@qweet.user)
+    redirect_to user_path(@user), notice: 'You can only edit your own Qweets' unless current_user == @user
   end
 
   def update
@@ -31,7 +33,14 @@ class QweetsController < ApplicationController
   end
 
   def destroy
-    @qweet.destroy
+    @qweet = set_qweet
+    @user = User.find(params[:user_id])
+
+    if @qweet.destroy
+      redirect_to user_path(@user), notice: 'Qweet was successfully DESTROYED.'
+    else
+      render :edit
+    end
   end
 
   def index
@@ -39,8 +48,12 @@ class QweetsController < ApplicationController
   end
 
   def new
-    @qweet = Qweet.new
     @user = User.find(params[:user_id])
+    if current_user == @user
+      @qweet = Qweet.new
+    else
+      redirect_to user_path(@user), notice: 'You can only compose your own Qweets'
+    end
   end
 
   private

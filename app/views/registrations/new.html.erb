@@ -1,0 +1,20 @@
+<h1>Sign Up!</h1>
+<%= form_tag registrations_path do %>
+  <div class="">
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+  </div>
+  <div class="">
+    <%= label_tag :username %>
+    <%= text_field_tag :username %>
+  </div>
+  <div class="">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="">
+    <%= label_tag :password_confirmation %>
+    <%= password_field_tag :password_confirmation %>
+  </div>
+  <%= submit_tag "Sign up!" %>
+<% end %>

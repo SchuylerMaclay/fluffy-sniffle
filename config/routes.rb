@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   root to: 'users#index'
+  get 'registrations/new'
+
+  get 'sessions/new'
+
+  resources :sessions, only: [:new, :create]
+  delete 'sessions', to: "sessions#destroy"
+  resources :registrations, only: [:new, :create]
 
 
   resources :users do
