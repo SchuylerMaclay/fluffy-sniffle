@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :followships
   root to: 'users#index'
   get 'registrations/new'
 
