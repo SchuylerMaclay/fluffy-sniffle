@@ -1,5 +1,11 @@
 <div>
   <h3>Name: <%= @user.name %></h3>
+
+  <span><%= @user.followers.count %> Followers</span>
+  <span><%= @user.followeds.count %> Following</span>
+  <br>
+
+
   Qweet Count: <%= @user.qweets.size %><br>
   <%= link_to 'Compose New Qweet', new_user_qweet_path(@user) if @user == current_user %>
 <ul>
