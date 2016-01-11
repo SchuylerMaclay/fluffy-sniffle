@@ -1,6 +1,6 @@
-<h2>Edit a new User</h2>
+<h1>Edit User</h1>
   <%= render 'form' %>
 
 <br>
 
-<%= link_to "Delete User and all their Qweets", @user, method: :delete, data: { confirm: "Are you sure?" } %>
+<%= link_to "Delete User and all their Qweets", @user, method: :delete, data: { confirm: "Are you sure?" } if @user == current_user %>

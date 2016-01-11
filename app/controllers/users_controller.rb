@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.new(user_params)
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
@@ -17,25 +16,33 @@ class UsersController < ApplicationController
 
   def edit
     @user = set_user
+    redirect_to user_path(@user), notice: 'You can only edit yourself' unless current_user == @user
   end
 
   def update
     @user = set_user
-    if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+    if @user = current_user
+      if @user.update(user_params)
+        redirect_to @user, notice: 'User was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      render :edit, notice: "you kant kill someone else"
     end
   end
 
   def destroy
     @user = set_user
-    @user.qweets.destroy_all
-
-    if @user.destroy
-      redirect_to users_path, notice: 'User was successfully DESTROYED.'
+    if @user = current_user
+      @user.qweets.destroy_all
+      if @user.destroy
+        redirect_to users_path, notice: 'User was successfully DESTROYED.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      render :edit, notice: "you kant kill someone else"
     end
   end
 
@@ -59,9 +66,3 @@ class UsersController < ApplicationController
 
     end
 end
-
-# <%= link_to 'Ad details', [@magazine, @ad] %>
-# <%= link_to 'Edit Ad', [:edit, @magazine, @ad] %>
-# get 'photos/:id', to: 'photos#show'
-# rake routes
-# Rails.application.config.session_store :cookie_store, key: '_your_app_session', domain: ".example.com"

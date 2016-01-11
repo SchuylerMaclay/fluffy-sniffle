@@ -2,11 +2,11 @@
   <div>
     <h3>User name: <%= @qweet.user.name %></h3>
     <span>Qweet: <%= @qweet.content %></span>
-    <%= link_to 'edit qweet', [:edit, @qweet.user, @qweet] if @user == current_user %>
+    <%= link_to 'edit qweet', [:edit, @qweet.user, @qweet] if @qweet.user == current_user %>
   </div>
 <br>
 <%= link_to 'Back to user', user_path(@qweet.user) %>
-<% if @user == current_user %>
+<% if @qweet.user == current_user %>
 |
 <%= link_to 'Make new Qweet', new_user_qweet_path(@qweet.user) %>
 <% end %>

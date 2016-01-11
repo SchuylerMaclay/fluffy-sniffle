@@ -8,41 +8,39 @@
   <%= csrf_meta_tags %>
 
   <div class="">
-    <h1>Qwitter</h1>
+    <h1><%= link_to "Qwitter", users_path %></h1>
   </div>
 
 </head>
 <body>
+    <div class="">
+      <% if flash[:error] %>
+      <%= flash[:error] %>
+      <% end %>
+    </div>
+    <div class="">
+      <% if flash[:notice] %>
+      <%= flash[:notice] %>
+      <% end %>
+    </div>
   <div class="">
-    <% if flash[:error] %>
-    <%= flash[:error] %>
-    <% end %>
+      <% if session[:message] %>
+      Session Message: <%= session[:message] %>
+      <% end %>
   </div>
   <div class="">
-    <% if flash[:notice] %>
-    <%= flash[:notice] %>
-<% end %>
+    <% if logged_in? %>
+    Current user is: <%= current_user.name  %>
+    <%= link_to "Log out", sessions_path, method: :delete %> |
+    <%= link_to "Go To My Page", user_path(current_user) %>
+  <% else %>
+    <%= link_to "Sign up", new_registration_path %> |
+    <%= link_to "Sign in", new_session_path %>
+  <% end %>
+
   </div>
-<div class="">
-    <% if session[:message] %>
-    Session Message: <%= session[:message] %>
-    <% end %>
-</div>
-<div class="">
-  <% if logged_in? %>
-  Current user is: <%= current_user.name  %>
-  <%= link_to "Log out", sessions_path, method: :delete %> |
-  <%= link_to "Go To My Page", user_path(current_user) %>
-<% else %>
-  <%= link_to "Sign up", new_registration_path %> |
-  <%= link_to "Sign in", new_session_path %>
-<% end %>
 
-</div>
-
-  <ul>
-    <li><%= link_to "user index", users_path %></li>
-  </ul><%= yield %>
+  <%= yield %>
 
 </body>
 </html>

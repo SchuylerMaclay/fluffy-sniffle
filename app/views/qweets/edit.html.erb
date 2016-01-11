@@ -4,4 +4,4 @@
 
 <br>
 
-<%= link_to "Delete Qweet", [@user, @qweet], method: :delete, data: { confirm: "Are you sure?" } %>
+<%= button_to "Delete Qweet", [@user, @qweet], method: :delete, data: { confirm: "Are you sure?" } if @qweet.user == current_user %>
