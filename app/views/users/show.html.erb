@@ -1,13 +1,32 @@
 <div>
   <h3>Name: <%= @user.name %></h3>
 
-  <span><%= @user.followers.count %> Followers</span>
+  <span><%= @user.followers.count %> Followers</span> |
   <span><%= @user.followeds.count %> Following</span>
   <br>
 
+  <div class="">
+    <% if current_user != @user && logged_in? %>
+      <% if current_user.following?(@user) %>
+        <%= form_tag followship_path, method: :delete do %>
+          <%= hidden_field_tag :followship_id, @user.follower_followship_ids %>
+          <%= submit_tag "Unfollow" %>
+        <% end %>
+      <% else %>
+        <%= form_for @followship do %>
+          <%= hidden_field_tag :followed_id, @user.id %>
+          <%= submit_tag "Follow" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div><br>
 
-  Qweet Count: <%= @user.qweets.size %><br>
-  <%= link_to 'Compose New Qweet', new_user_qweet_path(@user) if @user == current_user %>
+
+    <span>Qweet Count: <%= @user.qweets.size %></span><br><br>
+  <div class="">
+    <%= link_to 'Compose New Qweet', new_user_qweet_path(@user) if @user == current_user %>
+  </div>
+
 <ul>
   <% @user.qweets.each do |qweet| %>
     <li><%= qweet.content %></li>

@@ -1,7 +1,17 @@
 == README
 
 Up and running with my qwitter
+
+much thanks to this guide for help thinking through
+follower stuff:
+
+http://code.tutsplus.com/articles/building-ribbit-in-rails--net-29116
 * ...
+
+add lots of users
+check if unfollow works with lots of relationships
+switch forms and users for session/registration
+move more logic to models
 
 
 Please feel free to use a different markup language if you do not plan to run
