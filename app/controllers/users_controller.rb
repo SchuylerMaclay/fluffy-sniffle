@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         render :edit
       end
     else
-      render :edit, notice: "you kant kill someone else"
+      render :edit, notice: "you kant edit someone else"
     end
   end
 
@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     if @user = current_user
       @user.qweets.destroy_all
       if @user.destroy
+        session[:user_id] = nil
         redirect_to users_path, notice: 'User was successfully DESTROYED.'
       else
         render :edit

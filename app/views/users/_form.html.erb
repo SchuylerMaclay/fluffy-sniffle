@@ -1,17 +1,19 @@
 <%= form_for @user do |f| %>
 
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
+  </div><br>
+  <div class="">
+    <%= f.submit %>
   </div>
 
-  <%= f.submit %>
 <% end %>
